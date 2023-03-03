@@ -22,7 +22,7 @@ function kadai_new() {
 
 function logout() {
    if (document.getElementById("user_id").value) {
-      location.href="/?id="+document.getElementById("user_id").value;
+      location.href="/public/?id="+document.getElementById("user_id").value;
    } else {
       location.href="/public";
    }
