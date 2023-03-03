@@ -13,7 +13,7 @@
       <table>
         <tr>
           <td class="left">
-            <h1>タスク管�?</h1>
+            <h1>タスク管理</h1>
           </td>
           <td class="right">
             <img id="menu" src="./assets/image/menu.png" onclick="click_menu('open')">
@@ -26,9 +26,9 @@
       <div class="menu_main" id="menu_main">
         <h3>MENU</h3>
         <ul>
-          <li style="cursor: pointer;">ホ�?��?</li>
-          <li style="cursor: pointer;" onclick="kadai_new()">課題�?�追�?</li>
-          <li style="cursor: pointer;" onclick="logout()">ログアウ�?</li>
+          <li style="cursor: pointer;">ホーム</li>
+          <li style="cursor: pointer;" onclick="kadai_new()">課題の追加</li>
+          <li style="cursor: pointer;" onclick="logout()">ログアウト</li>
         </ul>
       </div>
     </header>
@@ -45,17 +45,17 @@
           @if ($search_flg == 1)
           style="background-color: #e1e1e1;"
           @endif
-          >未対�?</li>
+          >未対応</li>
           <li onclick="search('2', '{{$user_id}}')" 
           @if ($search_flg == 2)
           style="background-color: #e1e1e1;"
           @endif
-          >処�?中</li>
+          >処理中</li>
           <li onclick="search('3', '{{$user_id}}')" 
           @if ($search_flg == 3)
           style="background-color: #e1e1e1;"
           @endif
-          >完�?</li>
+          >完了</li>
         </ul>
       </section>
       <section class="section2">
@@ -63,11 +63,11 @@
         <div class="grid-container1">
           <div class="grid-container2">
             <div class="title">キー</div>
-            <div class="title">�?容</div>
+            <div class="title">内容</div>
           </div>
           <div class="grid-container3">
-            <div class="title">�?当�?</div>
-            <div class="title">状�?</div>
+            <div class="title">担当者</div>
+            <div class="title">状態</div>
             <div class="title">期限日</div>
           </div>
         </div>
@@ -83,11 +83,11 @@
             <div class="grid-container3">
               <div>{{$kadai->tantou}}</div>
               @if ($kadai->zyoutai == '1')
-                <div>未対�?</div>
+                <div>未対応</div>
               @elseif ($kadai->zyoutai == '2')
-                <div>処�?中</div>
+                <div>処理中</div>
               @elseif ($kadai->zyoutai == '3')
-                <div>完�?</div>
+                <div>完了</div>
               @endif
               <div>{{$kadai->kigen_y}}/{{$kadai->kigen_m}}/{{$kadai->kigen_d}}</div>
             </div>
