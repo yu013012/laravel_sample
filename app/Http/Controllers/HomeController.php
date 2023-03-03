@@ -45,7 +45,7 @@ class HomeController extends Controller
             $validator = Validator::make($request->all(), $rulus, $message);
         
             if ($validator->fails()) {
-                return redirect('/new')->withErrors($validator)->withInput();
+                return redirect('/public/new')->withErrors($validator)->withInput();
             }
 
             $created_date = \DB::table('user_table')
@@ -107,15 +107,15 @@ class HomeController extends Controller
             if ($request->id) {
                 $token_data = \DB::table('login_time_table')->where('user_table_id', $request->id)->get();
                 if (count($token_data) == 0) {
-                    return redirect('/');
+                    return redirect('/public');
                 } else {
                     if (now()->format(now()->format("YmdHis")) - $token_data[0]->token > 7200) {
                         \DB::table('login_time_table')->where('user_table_id', $request->id)->delete();
-                        return redirect('/');
+                        return redirect('/public');
                     }
                 }
             } else {
-                return redirect('/');
+                return redirect('/public');
             }
             // バリデーション
             $rulus = [
@@ -133,7 +133,7 @@ class HomeController extends Controller
             $validator = Validator::make($request->all(), $rulus, $message);
         
             if ($validator->fails()) {
-                return redirect('/home/new?id=1')->withErrors($validator)->withInput();
+                return redirect('/public/home/new?id=1')->withErrors($validator)->withInput();
             }
             
             $created_date = \DB::table('task_table')
@@ -171,15 +171,15 @@ class HomeController extends Controller
             if ($request->id) {
                 $token_data = \DB::table('login_time_table')->where('user_table_id', $request->id)->get();
                 if (count($token_data) == 0) {
-                    return redirect('/');
+                    return redirect('/public');
                 } else {
                     if (now()->format(now()->format("YmdHis")) - $token_data[0]->token > 7200) {
                         \DB::table('login_time_table')->where('user_table_id', $request->id)->delete();
-                        return redirect('/');
+                        return redirect('/public');
                     }
                 }
             } else {
-                return redirect('/');
+                return redirect('/public');
             }
             // バリデーション
             $rulus = [
@@ -197,7 +197,7 @@ class HomeController extends Controller
             $validator = Validator::make($request->all(), $rulus, $message);
         
             if ($validator->fails()) {
-                $url = '/home/edit?id=1&kadai_id='.$request->data_id;
+                $url = '/public/home/edit?id=1&kadai_id='.$request->data_id;
                 return redirect($url)->withErrors($validator)->withInput();
             }
             
@@ -228,21 +228,21 @@ class HomeController extends Controller
         }
 
         if ($id == "") {
-            return redirect("/");
+            return redirect("/public");
         }
 
         if ($id) {
             $token_data = \DB::table('login_time_table')->where('user_table_id', $id)->get();
             if (count($token_data) == 0) {
-                return redirect('/');
+                return redirect('/public');
             } else {
                 if (now()->format(now()->format("YmdHis")) - $token_data[0]->token > 7200) {
                     \DB::table('login_time_table')->where('user_table_id', $id)->delete();
-                    return redirect('/');
+                    return redirect('/public');
                 }
             }
         } else {
-            return redirect('/');
+            return redirect('/public');
         }
 
         if ($request->query('search_flg')) {
@@ -266,19 +266,19 @@ class HomeController extends Controller
             if ($request->query('id')) {
                 $token_data = \DB::table('login_time_table')->where('user_table_id', $request->query('id'))->get();
                 if (count($token_data) == 0) {
-                    return redirect('/');
+                    return redirect('/public');
                 } else {
                     if (now()->format(now()->format("YmdHis")) - $token_data[0]->token > 7200) {
                         \DB::table('login_time_table')->where('user_table_id', $request->query('id'))->delete();
-                        return redirect('/');
+                        return redirect('/public');
                     }
                 }
             } else {
-                return redirect('/');
+                return redirect('/public');
             }
             return view('kadai_new', ['user_id'=>$request->query('id')]);
         } else {
-            return redirect("/");
+            return redirect("/public");
         }
     }
 
@@ -288,20 +288,20 @@ class HomeController extends Controller
             if ($request->query('id')) {
                 $token_data = \DB::table('login_time_table')->where('user_table_id', $request->query('id'))->get();
                 if (count($token_data) == 0) {
-                    return redirect('/');
+                    return redirect('/public');
                 } else {
                     if (now()->format(now()->format("YmdHis")) - $token_data[0]->token > 7200) {
                         \DB::table('login_time_table')->where('user_table_id', $request->query('id'))->delete();
-                        return redirect('/');
+                        return redirect('/public');
                     }
                 }
             } else {
-                return redirect('/');
+                return redirect('/public');
             }
             $kadai_data = \DB::table('task_table')->where('user_table_id', $request->query('id'))->where('id', $request->query('kadai_id'))->get();
             return view('edit', ['user_id'=>$request->query('id'), 'kadai_data'=>$kadai_data[0]]);
         } else {
-            return redirect("/");
+            return redirect("/public");
         }
     }
 }

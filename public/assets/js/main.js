@@ -14,28 +14,28 @@ function click_menu(flg) {
 
 function kadai_new() {
    if (document.getElementById("user_id").value) {
-      location.href="http://tasukukanri/home/new?id="+document.getElementById("user_id").value;
+      location.href="/public/home/new?id="+document.getElementById("user_id").value;
    } else {
-      location.href="http://tasukukanri";
+      location.href="/";
    }
 }
 
 function logout() {
    if (document.getElementById("user_id").value) {
-      location.href="http://tasukukanri?id="+document.getElementById("user_id").value;
+      location.href="/?id="+document.getElementById("user_id").value;
    } else {
-      location.href="http://tasukukanri";
+      location.href="/";
    }
 }
 
 function home() {
    if (document.getElementById("user_id").value) {
-      location.href="http://tasukukanri/home?id="+document.getElementById("user_id").value;
+      location.href="/public/home?id="+document.getElementById("user_id").value;
    } else {
-      location.href="http://tasukukanri/home";
+      location.href="/public/home";
    }
 }
 
 function search(flg, id) {
-   location.href="http://tasukukanri/home?id="+id+"&search_flg="+flg;
+   location.href="/public/home?id="+id+"&search_flg="+flg;
 }
