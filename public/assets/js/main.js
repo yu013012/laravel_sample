@@ -16,7 +16,7 @@ function kadai_new() {
    if (document.getElementById("user_id").value) {
       location.href="/public/home/new?id="+document.getElementById("user_id").value;
    } else {
-      location.href="/";
+      location.href="/public";
    }
 }
 
@@ -24,7 +24,7 @@ function logout() {
    if (document.getElementById("user_id").value) {
       location.href="/?id="+document.getElementById("user_id").value;
    } else {
-      location.href="/";
+      location.href="/public";
    }
 }
 
